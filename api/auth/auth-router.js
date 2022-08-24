@@ -15,7 +15,7 @@ const {
 //POST -> GENERATE HASH -> REGISTER USER
 router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (req, res) => {
   const {username, password} = req.body
-  const hash = bcrypt.hashSync(password, 12)
+  const hash = bcrypt.hashSync(password, 8)
   const user = {username: username, password: hash}
   Users.insert(user)
     .then((result) => {
