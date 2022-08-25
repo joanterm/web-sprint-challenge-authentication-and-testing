@@ -19,12 +19,16 @@ router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (
   const user = {username: username, password: hash}
   Users.insert(user)
     .then((result) => {
-      res.status(201).json({id: result.id, username: username, password: password})
+      res.status(201).json({id: result.id, username: username, password: hash})
     })
     .catch((err) => {
       console.log(err)
     })
 });
+
+// server.js > auth endpoints > [POST] /api/auth/register [6] responds 
+// with an error status code if username or password are not sent
+
 
 //POST -> COMPARE HASH -> GENERATE SESSION TOKEN -> LOGIN
 router.post('/login', checkIfUsernamePasswordMissing, (req, res) => {
