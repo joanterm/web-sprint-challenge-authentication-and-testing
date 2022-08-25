@@ -14,21 +14,18 @@ const {
 
 //POST -> GENERATE HASH -> REGISTER USER
 router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (req, res) => {
-  const {username, password} = req.body
-  const hash = bcrypt.hashSync(password, 8)
-  const user = {username: username, password: hash}
-  Users.insert(user)
-    .then((result) => {
-      res.status(201).json({id: result.id, username: username, password: hash})
+  const { username, password } = req.body;
+
+  const hash = bcrypt.hashSync(password, 8);
+
+  Users.insert({ username, password: hash })
+    .then((user) => {
+      res.status(201).json(user);
     })
     .catch((err) => {
       console.log(err)
     })
 });
-
-// server.js > auth endpoints > [POST] /api/auth/register [6] responds 
-// with 
-//an error status code if username or password are not sent
 
 // server.js > auth endpoints > [POST] /api/auth/register [6] responds 
 // with 
