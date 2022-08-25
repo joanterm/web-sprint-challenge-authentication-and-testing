@@ -30,6 +30,10 @@ router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (
 // with 
 //an error status code if username or password are not sent
 
+// server.js > auth endpoints > [POST] /api/auth/register [6] responds 
+// with 
+//an error status code if username or password are not sent
+
 // server.js > auth endpoints > [POST] /api/auth/register [7]
 // responds with 
 // "username and password required" message if either is not sent
