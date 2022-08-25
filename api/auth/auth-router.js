@@ -26,12 +26,13 @@ router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (
     })
 });
 
-// server.js > auth endpoints > [POST] /api/auth/login [12] 
-// responds with a proper status code on non-existing username
-
 // server.js > auth endpoints > [POST] /api/auth/register [6] responds 
-// with an error status code if username or password are not sent
+// with 
+//an error status code if username or password are not sent
 
+// server.js > auth endpoints > [POST] /api/auth/register [7]
+// responds with 
+// "username and password required" message if either is not sent
 
 //POST -> COMPARE HASH -> GENERATE SESSION TOKEN -> LOGIN
 router.post('/login', checkIfUsernamePasswordMissing, (req, res) => {
@@ -50,6 +51,8 @@ router.post('/login', checkIfUsernamePasswordMissing, (req, res) => {
       console.log(err)
     })
 });
+
+
 
 //CREATE JWT TOKEN
 function generateToken(user) {
