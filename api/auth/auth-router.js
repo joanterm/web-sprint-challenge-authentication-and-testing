@@ -34,6 +34,7 @@ router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (
 // responds with 
 // "username and password required" message if either is not sent
 
+
 //POST -> COMPARE HASH -> GENERATE SESSION TOKEN -> LOGIN
 router.post('/login', checkIfUsernamePasswordMissing, (req, res) => {
   const {username, password} = req.body
