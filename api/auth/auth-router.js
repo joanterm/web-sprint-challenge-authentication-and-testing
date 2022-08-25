@@ -26,6 +26,9 @@ router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (
     })
 });
 
+// server.js > auth endpoints > [POST] /api/auth/login [12] 
+// responds with a proper status code on non-existing username
+
 // server.js > auth endpoints > [POST] /api/auth/register [6] responds 
 // with an error status code if username or password are not sent
 
@@ -36,7 +39,7 @@ router.post('/login', checkIfUsernamePasswordMissing, (req, res) => {
   Users.findBy({"username": username}).first()
     .then((result) => {
       console.log(result)
-      if(bcrypt.compareSync(password, result.password)) {
+      if(result && bcrypt.compareSync(password, result.password)) {
         const token = generateToken(result)
         res.status(200).json({message: `Welcome, ${username}`, token})
       } else {
