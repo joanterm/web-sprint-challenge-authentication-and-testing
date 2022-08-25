@@ -8,8 +8,8 @@ const checkIfUsernameTaken = (req, res, next) => {
             res.status(422).json({message: "username taken"})
             return
         }
-        next()
     })
+    next()
 }
 
 const checkIfUsernamePasswordMissing = (req, res, next) => {
