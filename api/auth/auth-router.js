@@ -13,7 +13,7 @@ const {
 } = require("./middleware")
 
 //POST -> GENERATE HASH -> REGISTER USER
-router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (req, res) => {
+router.post('/register', checkIfUsernamePasswordMissing, checkIfUsernameTaken, (req, res) => {
   const {username, password} = req.body
   const hash = bcrypt.hashSync(password, 8)
   const user = {username: username, password: hash}
