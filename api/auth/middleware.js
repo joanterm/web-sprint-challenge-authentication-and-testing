@@ -13,19 +13,11 @@ const checkIfUsernameTaken = (req, res, next) => {
 }
 
 const checkIfUsernamePasswordMissing = (req, res, next) => {
-    if (typeof req.body.username !== "string" || typeof req.body.password !== "string" ) {
-      res.status(400).json({ message: "username and password required" });
-      return;
-    }
-    if (req.body.username.trim() === "" || req.body.password.trim() === "") {
-      res.status(400).json({ message: "username and password required" });
-      return;
-    }
-    if(req.body.username == null || req.body.password == null) {
-        res.status(400).json({message: "username and password required"})
-        return
-    }
-    next();
+if(req.body.username == null || typeof req.body.username !== "string" || req.body.username.trim() === "" || req.body.password == null || req.body.password.trim() === "" || typeof req.body.password !== "string") {
+    res.status(400).json({message: "username and password required"})
+    return
+}
+next()
 }
 
 module.exports = {
