@@ -20,6 +20,7 @@ router.post('/register', checkIfUsernameTaken, checkIfUsernamePasswordMissing, (
   Users.insert(user)
     .then((result) => {
       res.status(201).json({id: result.id, username: username, password: hash})
+      return
     })
     .catch((err) => {
       console.log(err)
